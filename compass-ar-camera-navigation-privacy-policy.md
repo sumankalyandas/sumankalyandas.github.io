@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Privacy Policy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Compass &amp; AR Camera Navigation</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    h1 {
+      border-bottom: 2px solid #eaeaea;
+      padding-bottom: 8px;
+    }
+    h2 {
+      margin-top: 24px;
+      color: #1a1a1a;
+    }
+    .meta-date {
+      color: #666666;
+      font-size: 0.95em;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Privacy Policy</h1>
-  <p><strong>Last updated:</strong> 2026-07-11</p>
+  <p class="meta-date"><strong>Last updated:</strong> July 11, 2026</p>
 
   <p>Your privacy is important to us. It is Compass - AR Camera Navigation's policy to respect your privacy regarding any information we may collect from you across our application.</p>
 
@@ -26,6 +57,7 @@
   <p>Our app uses third-party services (e.g., Google Maps, Open-Meteo) which may have their own privacy policies. We encourage you to review their policies.</p>
 
   <h2>6. Contact Us</h2>
-  <p>If you have any questions about how we handle user data and personal information, feel free to contact us at phoenix.org.support@gmail.com</p>
+  <p>If you have any questions about how we handle user data and personal information, feel free to contact us at <a href="mailto:phoenix.org.support@gmail.com">phoenix.org.support@gmail.com</a>.</p>
+
 </body>
 </html>
