@@ -1,24 +1,184 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Account Deletion Request - Document Scanner - PDF Creator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account & Data Deletion - Document Scanner - PDF Creator</title>
+  <style>
+    :root {
+      --primary-color: #1a73e8;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-main: #202124;
+      --text-secondary: #5f6368;
+      --border-color: #dadce0;
+      --danger-color: #d93025;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 40px 16px;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .section p, .section ul {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .section ul {
+      list-style-position: inside;
+      padding-left: 8px;
+    }
+
+    .section ul li {
+      margin-bottom: 6px;
+    }
+
+    .notice-box {
+      background-color: #fce8e6;
+      border-left: 4px solid var(--danger-color);
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: #a50e0e;
+    }
+
+    .form-wrapper {
+      margin-top: 24px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+      display: block;
+    }
+
+    .footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px 8px;
+      }
+      .container {
+        padding: 20px 16px;
+      }
+      .header h1 {
+        font-size: 20px;
+      }
+      iframe {
+        height: 800px;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; padding: 24px; max-width: 600px; margin: auto;">
-  <h2>Account & Data Deletion Request for [Your App Name]</h2>
-  <p>If you wish to delete your account and all associated data, you can request permanent deletion at any time.</p>
-  
-  <h3>How to Request:</h3>
-  <p>Send an email to <strong><a href="mailto:your-support-email@example.com?subject=Account%20Deletion%20Request">your-support-email@example.com</a></strong> with the subject line <em>Account Deletion Request</em>.</p>
-  <p>Please send the email from the Google email address associated with your app account so we can verify ownership.</p>
+<body>
 
-  <h3>What Data Will Be Deleted:</h3>
-  <ul>
-    <li>User profile details (Name, Email, Account ID)</li>
-    <li>App activity and stored personal settings</li>
-    <li>Associated database records</li>
-  </ul>
+  <div class="container">
+    <div class="header">
+      <h1>Account & Data Deletion Request</h1>
+      <p>App: <strong>Document Scanner - PDF Creator</strong></p>
+    </div>
 
-  <h3>Data Retention & Processing Time:</h3>
-  <p>Your request will be processed within 30 days. Once deleted, all personal data is permanently removed and cannot be recovered.</p>
+    <div class="notice-box">
+      <strong>Important:</strong> Deleting your account is permanent. Once completed, your stored profile information and associated app records cannot be recovered.
+    </div>
+
+    <div class="section">
+      <h2>Data Policy & Processing Details</h2>
+      <ul>
+        <li><strong>Data to be Deleted:</strong> User profile details (name, email address, Google User ID) and all associated cloud-synced documents/data records.</li>
+        <li><strong>Data Retained:</strong> No personal identification data is retained. Aggregated, anonymized analytical logs may be kept solely for app stability monitoring.</li>
+        <li><strong>Processing Timeline:</strong> Requests submitted via the form below are verified and processed within <strong>30 days</strong>.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Submit Your Deletion Request</h2>
+      <p>Fill out the form below using the Google email account associated with your app account:</p>
+      
+      <div class="form-wrapper">
+        <!-- REPLACE THE SRC URL BELOW WITH YOUR GOOGLE FORM EMBED LINK -->
+        <iframe 
+          src="https://docs.google.com/forms/d/e/1FAIpQLSchaSe8jbnghowxRzrO4keE7JTMRt1tL9FZbXKA01rJIPKQZQ/viewform?embedded=true" 
+          frameborder="0" 
+          marginheight="0" 
+          marginwidth="0">
+          Loading…
+        </iframe>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>If you experience any issues submitting this form, contact our support team at <a href="mailto:phoenix.org.support@gmail.com?subject=Document%20Scanner%20-%20Account%20Deletion%20Request">phoenix.org.support@gmail.com</a>.</p>
+    </div>
+  </div>
+
 </body>
 </html>
