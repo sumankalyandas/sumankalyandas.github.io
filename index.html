@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="HJemWTMr7B7nW5qMhURWpQn2XnpQA1IbSvs-4RPb96s" />
+    <title>App Portfolio | Google Play Apps</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between antialiased">
+
+    <header class="bg-white border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 py-12 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-semibold mb-4">
+                <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+                <span>Google Play Developer Showcase</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-3">
+                Mobile Utility Applications
+            </h1>
+            <p class="text-slate-600 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                Simple, fast, and essential utility tools engineered for Android. Explore our published applications below.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-12 flex-grow w-full">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- App 1: AR Camera Compass -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <!-- App Icon Header -->
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center mb-5 shadow-sm">
+                        <i data-lucide="compass" class="w-7 h-7"></i>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-900 mb-1">Compass AR - Camera Navigation</h2>
+                    <p class="text-xs font-mono text-slate-400 mb-4 break-all">com.skdas.compass_ar_camera_navigation</p>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                        Augmented reality camera overlay with directional compass navigation, real-time GPS coordinates, elevation tracking, and precision heading control.
+                    </p>
+                </div>
+                <div>
+                    <a href="https://play.google.com/store/apps/details?id=com.skdas.compass_ar_camera_navigation" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors">
+                        <i data-lucide="play" class="w-3.5 h-3.5 fill-current text-green-400"></i>
+                        <span>View on Google Play</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- App 2: Doc Scanner -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <!-- App Icon Header -->
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-600 text-white flex items-center justify-center mb-5 shadow-sm">
+                        <i data-lucide="file-text" class="w-7 h-7"></i>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-900 mb-1">Doc Scanner</h2>
+                    <p class="text-xs font-mono text-slate-400 mb-4 break-all">com.rbasak.docscanner</p>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                        Fast mobile document scanner to digitize papers, receipts, and IDs into clear PDF documents with auto-edge detection and filter enhancements.
+                    </p>
+                </div>
+                <div>
+                    <a href="https://play.google.com/store/apps/details?id=com.rbasak.docscanner" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors">
+                        <i data-lucide="play" class="w-3.5 h-3.5 fill-current text-green-400"></i>
+                        <span>View on Google Play</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- App 3: QR Code Scanner -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div>
+                    <!-- App Icon Header -->
+                    <div class="w-14 h-14 rounded-2xl bg-purple-600 text-white flex items-center justify-center mb-5 shadow-sm">
+                        <i data-lucide="qr-code" class="w-7 h-7"></i>
+                    </div>
+                    <h2 class="text-lg font-bold text-slate-900 mb-1">QR Code Scanner</h2>
+                    <p class="text-xs font-mono text-slate-400 mb-4 break-all">com.rbasak.qrcodescanner</p>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                        Lightning-fast barcode scanner and QR code reader supporting all major 1D and 2D formats, instant Wi-Fi scanning, and web links.
+                    </p>
+                </div>
+                <div>
+                    <a href="https://play.google.com/store/apps/details?id=com.rbasak.qrcodescanner" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors">
+                        <i data-lucide="play" class="w-3.5 h-3.5 fill-current text-green-400"></i>
+                        <span>View on Google Play</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white py-6 mt-12">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="text-xs text-slate-500">© 2026 Developer Portfolio. All applications available on Google Play.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
