@@ -1,1 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - All Document Reader: PDF, Word</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom print styles */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #111827 !important;
+      }
+      .print-shadow-none {
+        box-shadow: none !important;
+        border: none !important;
+      }
+      a {
+        text-decoration: underline;
+      }
+    }
 
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans selection:bg-blue-100 selection:text-blue-900 min-h-screen flex flex-col justify-between">
+
+  <!-- Top Announcement / App Header Bar -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- App Identity -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">All Document Reader</h1>
+          <p class="text-xs text-slate-500 font-medium">PDF, Word, Excel, PPT &amp; Text</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center space-x-2 sm:space-x-3 no-print">
+        <!-- Edit Placeholders Button -->
+        <button id="toggleConfigBtn" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium px-3 py-2 rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 transition">
+          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+          </svg>
+          <span class="hidden sm:inline">Customize Info</span>
+          <span class="sm:hidden">Edit</span>
+        </button>
+
+        <!-- Print / PDF Export Button -->
+        <button onclick="window.print()" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+          </svg>
+          <span>Print / PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Quick-Configurator Drawer (Foldable) -->
+  <section id="configDrawer" class="hidden no-print bg-slate-100 border-b border-slate-200 px-4 py-4 sm:px-6 lg:px-8 transition-all duration-300">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
+        <h2 class="text-sm font-semibold text-slate-800 flex items-center gap-2">
+          <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Customize Template Placeholders (Auto Updates Text Below)
+        </h2>
+        <button id="closeConfigBtn" class="text-xs text-slate-500 hover:text-slate-800 font-medium">Dismiss</button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+        <div>
+          <label class="block font-medium text-slate-600 mb-1">Developer / Company</label>
+          <input type="text" id="cfgCompany" value="Mobility Document Apps Ltd." class="w-full px-2.5 py-1.5 rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-600 mb-1">Support Email</label>
+          <input type="email" id="cfgEmail" value="privacy@documentreaderapp.com" class="w-full px-2.5 py-1.5 rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-600 mb-1">Official Website</label>
+          <input type="text" id="cfgWebsite" value="https://www.documentreaderapp.com" class="w-full px-2.5 py-1.5 rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-600 mb-1">Last Updated Date</label>
+          <input type="date" id="cfgDate" value="2026-10-19" class="w-full px-2.5 py-1.5 rounded border border-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500 bg-white">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+    
+    <!-- Hero / Title Header -->
+    <div class="mb-10 text-center sm:text-left border-b border-slate-200 pb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
+        <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+        Official Compliance Document
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Privacy Policy</h1>
+      <p class="mt-2 text-sm sm:text-base text-slate-600 max-w-3xl">
+        This document outlines how <span class="font-semibold text-slate-800 app-company-name">Mobility Document Apps Ltd.</span> collects, uses, handles, and protects your information when you use our mobile application: <strong class="text-slate-900">All Document Reader: PDF, Word</strong>.
+      </p>
+      <div class="mt-4 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-medium text-slate-500">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Effective Date: <time id="valDateText" class="text-slate-700">October 19, 2026</time>
+        </span>
+        <span class="hidden sm:inline">&bull;</span>
+        <span>App ID: <code class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-700">com.document.reader.pdfword</code></span>
+        <span class="hidden sm:inline">&bull;</span>
+        <span class="text-emerald-700 font-semibold flex items-center gap-1">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          GDPR &amp; CCPA Compliant Ready
+        </span>
+      </div>
+    </div>
+
+    <!-- Layout Grid: Table of Contents + Policy Content -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Sticky Sidebar / Table of Contents (Desktop) -->
+      <aside class="hidden lg:block lg:col-span-4 sticky top-24 no-print">
+        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
+            Table of Contents
+          </h2>
+          <nav class="space-y-1 text-sm font-medium" id="toc-nav">
+            <a href="#overview" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">1. Overview &amp; Core Commitment</a>
+            <a href="#information-collection" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">2. Information Collection &amp; Permissions</a>
+            <a href="#how-we-use-info" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">3. How Information Is Used</a>
+            <a href="#third-party-services" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">4. Third-Party SDKs &amp; Services</a>
+            <a href="#data-security" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">5. Data Storage &amp; Security</a>
+            <a href="#user-rights" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">6. User Rights (GDPR / CCPA)</a>
+            <a href="#childrens-privacy" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">7. Children's Privacy</a>
+            <a href="#policy-changes" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">8. Changes to Privacy Policy</a>
+            <a href="#contact" class="toc-link block px-3 py-1.5 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-blue-50/60 transition">9. Contact Information</a>
+          </nav>
+          
+          <div class="mt-6 pt-5 border-t border-slate-100 bg-slate-50 -mx-5 -mb-5 p-4 rounded-b-2xl">
+            <p class="text-xs text-slate-500">Need specific adjustments or questions about your data?</p>
+            <a href="#contact" class="mt-2 block text-center text-xs font-semibold text-blue-600 hover:text-blue-700 bg-white py-1.5 px-3 rounded-lg border border-slate-200 shadow-2xs">Contact Privacy Officer</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Body Content -->
+      <article class="lg:col-span-8 bg-white p-6 sm:p-10 rounded-2xl border border-slate-200/80 shadow-sm space-y-12 leading-relaxed text-slate-700">
+
+        <!-- 1. Overview & Core Commitment -->
+        <section id="overview" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">1</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Overview &amp; Core Commitment</h2>
+          </div>
+          <p class="mb-3">
+            Welcome to <strong>All Document Reader: PDF, Word</strong> (hereinafter referred to as the <em>"Application"</em> or <em>"App"</em>), operated by <span class="font-semibold text-slate-800 app-company-name">Mobility Document Apps Ltd.</span> (<em>"we"</em>, <em>"our"</em>, or <em>"us"</em>). 
+          </p>
+          <div class="p-4 rounded-xl bg-blue-50/70 border border-blue-100 text-blue-900 text-sm">
+            <strong class="font-semibold block mb-1">Our Core Privacy Promise:</strong>
+            We design our application with a <strong>Local-First Architecture</strong>. We do <strong>NOT</strong> upload, transfer, scan, or store your documents, files, PDFs, spreadsheets, or slides on remote servers. All parsing, rendering, indexation, and reading take place <strong>100% locally on your personal device</strong>.
+          </div>
+        </section>
+
+        <!-- 2. Information Collection & Permissions -->
+        <section id="information-collection" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">2</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Information Collection &amp; Device Permissions</h2>
+          </div>
+          <p class="mb-4">
+            To provide file reading, organizing, and management functionalities, the App requires certain operating system permissions. We only request permissions strictly essential for the core utility of reading your files.
+          </p>
+
+          <!-- Permissions Sub-cards -->
+          <div class="space-y-4">
+            <!-- Storage Permissions -->
+            <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+              <div class="flex items-start gap-3">
+                <div class="p-2 rounded-lg bg-amber-100 text-amber-700 shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-slate-900 text-base">Storage Access Permissions (Android &amp; iOS)</h3>
+                  <p class="text-xs font-mono text-slate-500 mt-0.5">READ_EXTERNAL_STORAGE / WRITE_EXTERNAL_STORAGE / MANAGE_EXTERNAL_STORAGE</p>
+                  <p class="text-sm mt-2 text-slate-600">
+                    <strong>Why it is needed:</strong> Enables the app to scan, list, open, rename, bookmark, and render documents (.pdf, .docx, .xlsx, .pptx, .txt) stored in your device's internal storage or SD card.
+                  </p>
+                  <p class="text-xs text-slate-500 mt-2 bg-white p-2.5 rounded-lg border border-slate-200">
+                    <span class="font-semibold text-slate-700">Strict Boundary:</span> Under no circumstances are the names, contents, or metadata of your personal files collected, transmitted, or monitored by us. Access remains entirely on-device.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Automatically Collected Diagnostic Data -->
+            <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/50">
+              <div class="flex items-start gap-3">
+                <div class="p-2 rounded-lg bg-blue-100 text-blue-700 shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-slate-900 text-base">Device &amp; Telemetry Data</h3>
+                  <p class="text-sm mt-1 text-slate-600">
+                    When you use the App, our integrated third-party analytics and ad network SDKs may automatically collect non-personally identifiable diagnostic information, including:
+                  </p>
+                  <ul class="list-disc list-inside text-xs sm:text-sm text-slate-600 mt-2 space-y-1">
+                    <li>Device model, manufacturer, and operating system version (e.g., Android 14, iOS 17)</li>
+                    <li>IP address (used to infer broad geographic region such as country/city)</li>
+                    <li>Network connection status (Wi-Fi vs Mobile Cellular)</li>
+                    <li>App crashes, ANRs (Application Not Responding), and rendering failure logs</li>
+                    <li>Advertising ID (Google AAID or Apple IDFA, subject to your consent settings)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. How We Use Information -->
+        <section id="how-we-use-info" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">3</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">How Information Is Used</h2>
+          </div>
+          <p class="mb-4">We process telemetry and device identifiers strictly for lawful bases and explicit product improvement purposes:</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/60">
+              <h4 class="font-semibold text-slate-900 text-sm mb-1 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Core Functionality
+              </h4>
+              <p class="text-xs sm:text-sm text-slate-600">Loading, sorting, searching, zooming, caching, and editing office documents and PDFs locally.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/60">
+              <h4 class="font-semibold text-slate-900 text-sm mb-1 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> App Stability &amp; Diagnostics
+              </h4>
+              <p class="text-xs sm:text-sm text-slate-600">Detecting memory leaks, crash logs, and optimizing parsing engines across different device architectures.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/60">
+              <h4 class="font-semibold text-slate-900 text-sm mb-1 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Advertising &amp; Monetization
+              </h4>
+              <p class="text-xs sm:text-sm text-slate-600">Displaying contextual or personalized advertisements to support free access to the reader tool.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/60">
+              <h4 class="font-semibold text-slate-900 text-sm mb-1 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Compliance &amp; Security
+              </h4>
+              <p class="text-xs sm:text-sm text-slate-600">Preventing fraudulent ad traffic, verifying software integrity, and complying with app store guidelines.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. Third-Party Services -->
+        <section id="third-party-services" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">4</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Third-Party SDKs &amp; Service Providers</h2>
+          </div>
+          <p class="mb-4">
+            The App integrates industry-standard SDKs to serve advertisements and analyze performance. These external providers process data according to their independent privacy statements:
+          </p>
+
+          <!-- Third-party Table -->
+          <div class="overflow-x-auto border border-slate-200 rounded-xl">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead class="bg-slate-100 text-slate-700 font-semibold border-b border-slate-200">
+                <tr>
+                  <th class="p-3">Partner / SDK</th>
+                  <th class="p-3">Purpose</th>
+                  <th class="p-3">Data Processed</th>
+                  <th class="p-3">Privacy Link</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                <tr class="hover:bg-slate-50/50">
+                  <td class="p-3 font-semibold text-slate-900">Google AdMob</td>
+                  <td class="p-3 text-slate-600">In-app advertisements (banner, interstitial, rewarded)</td>
+                  <td class="p-3 text-slate-600">Advertising ID (AAID/IDFA), IP address, interaction metrics</td>
+                  <td class="p-3">
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Google Privacy</a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/50">
+                  <td class="p-3 font-semibold text-slate-900">Firebase Crashlytics &amp; Analytics</td>
+                  <td class="p-3 text-slate-600">Crash reporting and feature usage analysis</td>
+                  <td class="p-3 text-slate-600">Stack traces, device manufacturer, OS build, session events</td>
+                  <td class="p-3">
+                    <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Firebase Policy</a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/50">
+                  <td class="p-3 font-semibold text-slate-900">Google Play Services</td>
+                  <td class="p-3 text-slate-600">App authentication, updates &amp; billing services</td>
+                  <td class="p-3 text-slate-600">Device identifiers, purchase tokens</td>
+                  <td class="p-3">
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Google Services</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-500 mt-2">
+            You can opt out of interest-based ads by adjusting settings on your mobile device (e.g., <em>Google Settings &gt; Ads &gt; Delete Advertising ID</em> on Android, or <em>Settings &gt; Privacy &gt; Tracking</em> on iOS).
+          </p>
+        </section>
+
+        <!-- 5. Data Security -->
+        <section id="data-security" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">5</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Data Storage &amp; Security</h2>
+          </div>
+          <div class="space-y-3">
+            <p>
+              We prioritize the protection of your digital environment. Because our App functions primarily offline and processes files locally, the risk of cloud-based intercept or server breaches involving your confidential files is mitigated at the architectural level.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                <span class="font-bold text-xs uppercase tracking-wider text-slate-500 block mb-1">Local Sandboxing</span>
+                <p class="text-xs text-slate-600">Temporary rendering caches are kept within Android/iOS app sandboxes, isolated from unauthorized external apps.</p>
+              </div>
+              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                <span class="font-bold text-xs uppercase tracking-wider text-slate-500 block mb-1">Encrypted Transit</span>
+                <p class="text-xs text-slate-600">All diagnostic logs sent to Firebase and ad requests to AdMob utilize modern TLS/HTTPS encryption protocols.</p>
+              </div>
+              <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                <span class="font-bold text-xs uppercase tracking-wider text-slate-500 block mb-1">Zero Cloud Duplication</span>
+                <p class="text-xs text-slate-600">We do not operate cloud storage relays; your documents stay on your device unless you share them yourself.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. User Rights (GDPR / CCPA) -->
+        <section id="user-rights" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">6</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">User Rights (GDPR &amp; CCPA / CPRA)</h2>
+          </div>
+          <p class="mb-3">
+            Depending on your jurisdiction (such as the European Economic Area, United Kingdom, or California), you hold specific statutory privacy rights regarding your data:
+          </p>
+          <ul class="list-disc list-inside space-y-1.5 text-sm text-slate-600">
+            <li><strong>Right of Access &amp; Portability:</strong> You may request disclosure of any telemetry data linked to your advertising identifier.</li>
+            <li><strong>Right to Erasure / Deletion:</strong> You can clear app storage, cache, or reset your Advertising ID at any time via your device settings.</li>
+            <li><strong>Do Not Sell or Share My Information:</strong> We do not sell personal data or trade document contents to data brokers.</li>
+            <li><strong>Revoke Permissions:</strong> You can withdraw file storage permissions anytime via your OS settings (<code class="bg-slate-100 px-1 py-0.5 rounded text-xs">Settings &gt; Apps &gt; All Document Reader &gt; Permissions</code>).</li>
+          </ul>
+        </section>
+
+        <!-- 7. Children's Privacy -->
+        <section id="childrens-privacy" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">7</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Children's Privacy (COPPA Compliance)</h2>
+          </div>
+          <p class="text-sm text-slate-600">
+            Our application is not targeted at children under the age of 13 (or under 16 in certain EU member states). We do not knowingly solicit or collect personally identifiable information from children. If we become aware that personal information of a child has been inadvertently gathered without parental consent verification, we will promptly take steps to delete such records from our diagnostic analytics systems.
+          </p>
+        </section>
+
+        <!-- 8. Changes to Privacy Policy -->
+        <section id="policy-changes" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">8</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Changes to This Privacy Policy</h2>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">
+            We may revise this Privacy Policy periodically to reflect changes in legal statutes, OS permission requirements, or app features. The revised policy will be posted on this page with an updated <em class="text-slate-800">"Effective Date"</em> at the top. We recommend checking this page periodically to stay informed about how we safeguard your information.
+          </p>
+        </section>
+
+        <!-- 9. Contact Information -->
+        <section id="contact" class="scroll-mt-24">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-4">
+            <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm">9</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Contact Information</h2>
+          </div>
+          <p class="text-sm text-slate-600 mb-4">
+            If you have questions, inquiries, complaints, or feedback concerning this Privacy Policy or our file permission policies, please reach out to our privacy compliance team:
+          </p>
+          
+          <div class="bg-gradient-to-br from-slate-50 to-blue-50/40 border border-slate-200 p-5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <h4 class="font-bold text-slate-900 text-base app-company-name">Mobility Document Apps Ltd.</h4>
+              <p class="text-xs sm:text-sm text-slate-600 flex items-center gap-2">
+                <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <span class="app-email">privacy@documentreaderapp.com</span>
+              </p>
+              <p class="text-xs sm:text-sm text-slate-600 flex items-center gap-2">
+                <svg class="w-4 h-4 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                <a href="https://www.documentreaderapp.com" target="_blank" rel="noopener noreferrer" class="app-website text-blue-600 hover:underline">https://www.documentreaderapp.com</a>
+              </p>
+            </div>
+            
+            <div class="shrink-0 flex items-center gap-2">
+              <button id="copyEmailBtn" class="text-xs font-semibold px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 shadow-2xs transition flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                <span id="copyBtnText">Copy Email</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+
+  </main>
+
+  <!-- Modern Page Footer -->
+  <footer class="mt-16 bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p>&copy; <span id="currentYear">2026</span> <span class="app-company-name">Mobility Document Apps Ltd.</span> All rights reserved.</p>
+      <div class="flex items-center space-x-4">
+        <span>App: All Document Reader: PDF, Word</span>
+        <span>&bull;</span>
+        <a href="#overview" class="hover:text-blue-600 underline">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast Box (No alerts used) -->
+  <div id="toastBox" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2">
+    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    <span id="toastMsg">Action successful</span>
+  </div>
+
+  <!-- Client-side Interactive Logic -->
+  <script>
+    // Safe notification toast helper
+    function showToast(message) {
+      const toast = document.getElementById('toastBox');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2600);
+    }
+
+    // Toggle Config Drawer
+    const toggleConfigBtn = document.getElementById('toggleConfigBtn');
+    const closeConfigBtn = document.getElementById('closeConfigBtn');
+    const configDrawer = document.getElementById('configDrawer');
+
+    toggleConfigBtn.addEventListener('click', () => {
+      configDrawer.classList.toggle('hidden');
+    });
+
+    closeConfigBtn.addEventListener('click', () => {
+      configDrawer.classList.add('hidden');
+    });
+
+    // Real-time Placeholder Synchronizer
+    const cfgCompany = document.getElementById('cfgCompany');
+    const cfgEmail = document.getElementById('cfgEmail');
+    const cfgWebsite = document.getElementById('cfgWebsite');
+    const cfgDate = document.getElementById('cfgDate');
+
+    function updateTemplateFields() {
+      // Company Name
+      const compEls = document.querySelectorAll('.app-company-name');
+      compEls.forEach(el => el.textContent = cfgCompany.value || 'Mobility Document Apps Ltd.');
+
+      // Email
+      const emailEls = document.querySelectorAll('.app-email');
+      emailEls.forEach(el => el.textContent = cfgEmail.value || 'privacy@documentreaderapp.com');
+
+      // Website
+      const webEls = document.querySelectorAll('.app-website');
+      webEls.forEach(el => {
+        el.textContent = cfgWebsite.value || 'https://www.documentreaderapp.com';
+        el.href = cfgWebsite.value.startsWith('http') ? cfgWebsite.value : 'https://' + cfgWebsite.value;
+      });
+
+      // Date Format
+      if (cfgDate.value) {
+        const parts = cfgDate.value.split('-');
+        if (parts.length === 3) {
+          const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+          const options = { year: 'numeric', month: 'long', day: 'numeric' };
+          document.getElementById('valDateText').textContent = dateObj.toLocaleDateString('en-US', options);
+        }
+      }
+    }
+
+    cfgCompany.addEventListener('input', updateTemplateFields);
+    cfgEmail.addEventListener('input', updateTemplateFields);
+    cfgWebsite.addEventListener('input', updateTemplateFields);
+    cfgDate.addEventListener('input', updateTemplateFields);
+
+    // Copy Email to Clipboard helper
+    document.getElementById('copyEmailBtn').addEventListener('click', () => {
+      const emailText = cfgEmail.value || 'privacy@documentreaderapp.com';
+      const tempInput = document.createElement('input');
+      tempInput.style.position = 'absolute';
+      tempInput.style.left = '-9999px';
+      tempInput.value = emailText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      
+      try {
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        const btnLabel = document.getElementById('copyBtnText');
+        btnLabel.textContent = 'Copied!';
+        showToast('Email address copied to clipboard');
+        setTimeout(() => {
+          btnLabel.textContent = 'Copy Email';
+        }, 2000);
+      } catch (err) {
+        document.body.removeChild(tempInput);
+        showToast('Failed to copy text automatically');
+      }
+    });
+
+    // Active TOC link indicator on scroll
+    window.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('article section[id]');
+      const navLinks = document.querySelectorAll('#toc-nav a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('text-blue-600', 'bg-blue-50/80', 'font-semibold');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('text-blue-600', 'bg-blue-50/80', 'font-semibold');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
